@@ -26,6 +26,7 @@
     "src/main",
     "src/preload.ts",
     "src/shared",
+    "src/**/*.test.ts",
     "*.ts",
     "*.mts"
   ]

@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron"
 import path from "node:path"
+import { isDevToolsShortcut } from "@/main/devtools"
 
 export const createMainWindow = () => {
   const window = new BrowserWindow({
@@ -8,7 +9,7 @@ export const createMainWindow = () => {
     minWidth: 800,
     minHeight: 600,
     show: false,
-    backgroundColor: "#121212",
+    backgroundColor: "#f3f3f3",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -18,12 +19,15 @@ export const createMainWindow = () => {
   })
 
   window.removeMenu()
-  window.once("ready-to-show", () => { window.show() })
+  window.once("ready-to-show", () => {
+    window.maximize()
+    window.show()
+  })
   window.webContents.setWindowOpenHandler(() => ({ action: "deny" }))
 
   if (!app.isPackaged) {
     window.webContents.on("before-input-event", (event, input) => {
-      if (input.type === "keyDown" && input.key === "F12") {
+      if (isDevToolsShortcut(input)) {
         event.preventDefault()
         window.webContents.toggleDevTools()
       }

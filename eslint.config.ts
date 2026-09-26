@@ -51,6 +51,7 @@ export default defineConfig([
     files: ["src/renderer/components/ui/**"],
     rules: {
       "shadcn/no-arbitrary-values": "off",
+      "shadcn/no-restyle": "off",
     },
   },
 ])

@@ -1,7 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "@fontsource-variable/geist";
 
-@custom-variant dark (&:is(.dark *));
+@source not "../docs";
 
 @theme inline {
   --color-*: initial;
@@ -10,64 +11,46 @@
 
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-highlight: var(--highlight);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --color-sunken: var(--sunken);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-edge: var(--edge);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
 
-  --shadow-sunken: inset 0 1px 3px 0 var(--shade);
+  --shadow-sunken:
+    inset 0 1px 2px 0 var(--shade),
+    0 1px 0 0 var(--lip);
   --shadow-raised:
     inset 0 1px 0 0 var(--highlight),
-    0 1px 2px 0 var(--shade),
-    0 8px 24px -8px var(--shade);
+    0 1px 1px 0 var(--shade),
+    0 12px 32px -12px var(--shade-deep);
   --shadow-overlay:
     inset 0 1px 0 0 var(--highlight),
-    0 2px 4px 0 var(--shade),
-    0 24px 48px -12px var(--shade-deep);
+    0 24px 56px -16px var(--shade-deep);
 }
 
 :root {
-  --sunken: oklch(0.15 0 0);
-  --background: oklch(0.18 0 0);
-  --card: oklch(0.22 0 0);
-  --popover: oklch(0.26 0 0);
-  --secondary: oklch(0.3 0 0);
-  --muted: oklch(0.3 0 0);
-  --accent: oklch(0.3 0 0);
+  color-scheme: light;
 
-  --foreground: oklch(0.96 0 0);
-  --card-foreground: oklch(0.96 0 0);
-  --popover-foreground: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.96 0 0);
-  --accent-foreground: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.66 0 0);
-  --primary: oklch(0.96 0 0);
-  --primary-foreground: oklch(0.18 0 0);
-  --destructive: oklch(0.92 0 0);
+  --background: oklch(0.965 0 0);
+  --surface: oklch(1 0 0);
+  --muted: oklch(0.92 0 0);
+  --foreground: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --border: oklch(0 0 0 / 9%);
+  --edge: oklch(0 0 0 / 18%);
+  --ring: oklch(0 0 0 / 42%);
+  --destructive: oklch(0.55 0.21 27);
 
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --highlight: oklch(1 0 0 / 6%);
-  --ring: oklch(0.72 0 0);
-
-  --shade: oklch(0 0 0 / 50%);
-  --shade-deep: oklch(0 0 0 / 70%);
+  --selection: oklch(0 0 0 / 12%);
+  --highlight: oklch(1 0 0 / 20%);
+  --lip: oklch(1 0 0 / 80%);
+  --shade: oklch(0 0 0 / 10%);
+  --shade-deep: oklch(0 0 0 / 16%);
 }
 
 @layer base {
@@ -77,30 +60,34 @@
     border-radius: 0 !important;
   }
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   html {
-    color-scheme: dark;
     @apply font-sans;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(ellipse 120% 70% at 50% 0%, var(--surface), transparent);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: var(--selection);
   }
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--sunken);
+    background: var(--background);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--secondary);
-    border: 2px solid var(--sunken);
+    background: var(--muted);
+    border: 2px solid var(--background);
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--muted-foreground);
   }
   ::-webkit-scrollbar-corner {
-    background: var(--sunken);
+    background: var(--background);
   }
 }
