@@ -1,0 +1,3 @@
+- Do not comment your code your code should be self documenting
+- Do not leave orphaned code or things that are no longer used in the codebase 
+- After making changes, run `npm run check` (typecheck, lint, tests) and fix all errors
