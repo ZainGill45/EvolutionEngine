@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog } from "electron"
+import { app, BrowserWindow, dialog, nativeTheme } from "electron"
 import started from "electron-squirrel-startup"
 import { ManagedRuntime } from "effect"
 import path from "node:path"
@@ -13,6 +13,7 @@ const runtime = ManagedRuntime.make(
 
 const start = async () => {
   await app.whenReady()
+  nativeTheme.themeSource = "dark"
   await runtime.runtime()
   registerIpcHandlers(runtime, handlers)
   createMainWindow()

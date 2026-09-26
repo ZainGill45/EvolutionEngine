@@ -8,6 +8,7 @@ export const createMainWindow = () => {
     minWidth: 800,
     minHeight: 600,
     show: false,
+    backgroundColor: "#121212",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
