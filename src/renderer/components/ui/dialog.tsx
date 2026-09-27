@@ -12,6 +12,10 @@ function DialogTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
 }
 
+function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
+  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
+}
+
 function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
 }
@@ -82,9 +86,9 @@ function DialogFooter({
       {...props}
     >
       {showCloseButton && (
-        <DialogPrimitive.Close render={<Button />}>
+        <DialogClose render={<Button />}>
           Cancel
-        </DialogPrimitive.Close>
+        </DialogClose>
       )}
       {children}
     </div>
@@ -122,6 +126,7 @@ function DialogDescription({
 
 export {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
