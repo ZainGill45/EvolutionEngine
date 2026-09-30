@@ -21,36 +21,46 @@
   --color-ring: var(--ring);
   --color-destructive: var(--destructive);
 
-  --shadow-sunken:
-    inset 0 1px 2px 0 var(--shade),
-    0 1px 0 0 var(--lip);
-  --shadow-raised:
-    inset 0 1px 0 0 var(--highlight),
-    0 1px 1px 0 var(--shade),
-    0 12px 32px -12px var(--shade-deep);
+  --shadow-sunken: inset 0 1px 0 0 var(--lip);
+  --shadow-raised: 0 14px 32px -18px var(--shade);
   --shadow-overlay:
     inset 0 1px 0 0 var(--highlight),
-    0 24px 56px -16px var(--shade-deep);
+    0 24px 72px -20px var(--shade-deep);
+}
+
+@utility titlebar {
+  height: env(titlebar-area-height, --spacing(12));
+  padding-right: --spacing(2);
+  padding-left: calc(env(titlebar-area-x, 0px) + --spacing(2));
+  -webkit-app-region: drag;
+
+  & :is(a, button, input, select, textarea) {
+    -webkit-app-region: no-drag;
+  }
+}
+
+@utility no-drag {
+  -webkit-app-region: no-drag;
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  --background: oklch(0.965 0 0);
-  --surface: oklch(1 0 0);
-  --muted: oklch(0.92 0 0);
-  --foreground: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --border: oklch(0 0 0 / 9%);
-  --edge: oklch(0 0 0 / 18%);
-  --ring: oklch(0 0 0 / 42%);
-  --destructive: oklch(0.55 0.21 27);
+  --background: oklch(0.145 0 0);
+  --surface: color-mix(in srgb, var(--background) 97%, white);
+  --muted: oklch(1 0 0 / 4%);
+  --foreground: oklch(0.97 0 0);
+  --muted-foreground: color-mix(in srgb, oklch(0.556 0 0) 90%, white);
+  --border: oklch(1 0 0 / 6%);
+  --edge: oklch(1 0 0 / 8%);
+  --ring: oklch(1 0 0 / 42%);
+  --destructive: color-mix(in srgb, oklch(0.637 0.237 25.331) 90%, white);
 
-  --selection: oklch(0 0 0 / 12%);
-  --highlight: oklch(1 0 0 / 20%);
-  --lip: oklch(1 0 0 / 80%);
-  --shade: oklch(0 0 0 / 10%);
-  --shade-deep: oklch(0 0 0 / 16%);
+  --selection: oklch(1 0 0 / 16%);
+  --highlight: oklch(1 0 0 / 4%);
+  --lip: oklch(1 0 0 / 6%);
+  --shade: oklch(0 0 0 / 75%);
+  --shade-deep: oklch(0 0 0 / 90%);
 }
 
 @layer base {
@@ -67,27 +77,24 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: radial-gradient(ellipse 120% 70% at 50% 0%, var(--surface), transparent);
-    background-attachment: fixed;
   }
   ::selection {
     background: var(--selection);
   }
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--background);
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--muted);
-    border: 2px solid var(--background);
+    background: var(--edge);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted-foreground);
+    background: var(--ring);
   }
   ::-webkit-scrollbar-corner {
-    background: var(--background);
+    background: transparent;
   }
 }

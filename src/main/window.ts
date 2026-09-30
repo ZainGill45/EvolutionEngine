@@ -2,6 +2,9 @@ import { app, BrowserWindow } from "electron"
 import path from "node:path"
 import { isDevToolsShortcut } from "@/main/devtools"
 
+const background = "#0a0a0a"
+const foreground = "#f5f5f5"
+
 export const createMainWindow = () => {
   const window = new BrowserWindow({
     width: 1200,
@@ -9,7 +12,9 @@ export const createMainWindow = () => {
     minWidth: 800,
     minHeight: 600,
     show: false,
-    backgroundColor: "#f3f3f3",
+    backgroundColor: background,
+    titleBarStyle: "hidden",
+    titleBarOverlay: { color: background, symbolColor: foreground, height: 48 },
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,

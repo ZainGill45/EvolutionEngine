@@ -13,7 +13,7 @@ const runtime = ManagedRuntime.make(
 
 const start = async () => {
   await app.whenReady()
-  nativeTheme.themeSource = "light"
+  nativeTheme.themeSource = "dark"
   await runtime.runtime()
   registerIpcHandlers(runtime, handlers)
   createMainWindow()

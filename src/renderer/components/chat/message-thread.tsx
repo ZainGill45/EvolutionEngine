@@ -15,8 +15,6 @@ export function MessageThread({ messages }: { readonly messages: ReadonlyArray<M
     endRef.current?.scrollIntoView({ block: "end" })
   }, [messages])
 
-  if (messages.length === 0) return <EmptyThread />
-
   return (
     <ScrollArea className="min-h-0 flex-1">
       <div
@@ -50,17 +48,5 @@ function ThreadMessage({ message }: { readonly message: Message }) {
         {message.text}
       </p>
     </article>
-  )
-}
-
-function EmptyThread() {
-  return (
-    <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 px-6 text-center">
-      <h2 className="font-heading text-xl font-semibold">What do you want to understand?</h2>
-      <p className="max-w-md text-sm text-muted-foreground">
-        Ask a question or explain what you already think. The tutor helps you work it out instead
-        of handing you the answer.
-      </p>
-    </div>
   )
 }

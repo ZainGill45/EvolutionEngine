@@ -90,204 +90,207 @@ const topics = [
 
 export function VisualComponentsView() {
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-12 px-8 py-12">
-      <header className="flex flex-col gap-2">
-        <h1 className="font-heading text-2xl font-semibold">Visual Components</h1>
-        <p className="text-sm text-muted-foreground">
-          The canonical components of Evolution Engine. Run{" "}
-          <code className="font-mono text-foreground">ShowDefaultView()</code> in the console to
-          return to the app.
-        </p>
-      </header>
+    <>
+      <div className="titlebar sticky top-0 z-10 bg-background" />
+      <main className="mx-auto flex max-w-5xl flex-col gap-12 px-8 pb-12">
+        <header className="flex flex-col gap-2">
+          <h1 className="font-heading text-2xl font-semibold">Visual Components</h1>
+          <p className="text-sm text-muted-foreground">
+            The canonical components of Evolution Engine. Run{" "}
+            <code className="font-mono text-foreground">ShowDefaultView()</code> in the console to
+            return to the app.
+          </p>
+        </header>
 
-      <Showcase title="Color scheme">
-        {colors.map((color) => (
-          <ColorSwatch key={color.name} name={color.name} className={color.className} />
-        ))}
-      </Showcase>
+        <Showcase title="Color scheme">
+          {colors.map((color) => (
+            <ColorSwatch key={color.name} name={color.name} className={color.className} />
+          ))}
+        </Showcase>
 
-      <Showcase title="Elevation">
-        <Swatch name="sunken" className="bg-surface shadow-sunken" />
-        <Swatch name="background" className="bg-background ring-1 ring-border" />
-        <Swatch name="raised" className="bg-surface shadow-raised" />
-        <Swatch name="overlay" className="bg-surface shadow-overlay" />
-        <Swatch name="control" className="border border-edge bg-surface" />
-      </Showcase>
+        <Showcase title="Elevation">
+          <Swatch name="sunken" className="bg-surface shadow-sunken" />
+          <Swatch name="background" className="bg-background ring-1 ring-border" />
+          <Swatch name="raised" className="bg-surface shadow-raised" />
+          <Swatch name="overlay" className="bg-surface shadow-overlay" />
+          <Swatch name="control" className="border border-edge bg-surface" />
+        </Showcase>
 
-      <Showcase title="Text">
-        <div className="flex flex-col gap-1 text-sm">
-          <p className="text-foreground">Foreground: primary text</p>
-          <p className="text-muted-foreground">Muted foreground: secondary text and labels</p>
-          <p className="font-medium text-destructive">Destructive: errors and destructive actions</p>
-        </div>
-      </Showcase>
-
-      <Showcase title="Button">
-        <Button>Continue</Button>
-        <Button size="icon" aria-label="New topic">
-          <PlusIcon />
-        </Button>
-        <Button size="icon" aria-label="Settings">
-          <SettingsIcon />
-        </Button>
-        <Button disabled>Disabled</Button>
-      </Showcase>
-
-      <Showcase title="Badge">
-        <Badge>Teach mode</Badge>
-        <Badge variant="destructive">Overdue</Badge>
-      </Showcase>
-
-      <Showcase title="Input and label">
-        <Field className="w-64" id="gallery-input" label="Topic">
-          <Input id="gallery-input" placeholder="HTTP" />
-        </Field>
-        <Field className="w-64" id="gallery-input-invalid" label="Invalid">
-          <Input id="gallery-input-invalid" defaultValue="Not a topic" aria-invalid />
-        </Field>
-        <Field className="w-64" id="gallery-input-disabled" label="Disabled">
-          <Input id="gallery-input-disabled" placeholder="Unavailable" disabled />
-        </Field>
-      </Showcase>
-
-      <Showcase title="Textarea">
-        <Field className="w-64" id="gallery-textarea" label="Explanation">
-          <Textarea id="gallery-textarea" placeholder="Explain why the browser enforces CORS" />
-        </Field>
-        <Field className="w-64" id="gallery-textarea-invalid" label="Invalid">
-          <Textarea id="gallery-textarea-invalid" defaultValue="The server blocks the response." aria-invalid />
-        </Field>
-        <Field className="w-64" id="gallery-textarea-disabled" label="Disabled">
-          <Textarea id="gallery-textarea-disabled" placeholder="Unavailable" disabled />
-        </Field>
-      </Showcase>
-
-      <Showcase title="Select">
-        <ProviderSelect />
-        <ProviderSelect disabled />
-      </Showcase>
-
-      <Showcase title="Card">
-        <div className="w-80">
-          <Card>
-            <CardHeader>
-              <CardTitle>HTTP</CardTitle>
-              <CardDescription>Last studied two days ago</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Status codes, caching headers, and why the browser enforces CORS.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="w-64">
-          <Card size="sm">
-            <CardHeader>
-              <CardTitle>Small card</CardTitle>
-              <CardDescription>Compact spacing</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">For dense lists.</p>
-            </CardContent>
-          </Card>
-        </div>
-      </Showcase>
-
-      <Showcase title="Separator">
-        <div className="flex w-80 flex-col gap-3 text-sm">
-          <p>Explore</p>
-          <Separator />
-          <div className="flex h-5 items-center gap-3">
-            <span>Teach</span>
-            <Separator orientation="vertical" />
-            <span>Practice</span>
-            <Separator orientation="vertical" />
-            <span>Assess</span>
+        <Showcase title="Text">
+          <div className="flex flex-col gap-1 text-sm">
+            <p className="text-foreground">Foreground: primary text</p>
+            <p className="text-muted-foreground">Muted foreground: secondary text and labels</p>
+            <p className="font-medium text-destructive">Destructive: errors and destructive actions</p>
           </div>
-        </div>
-      </Showcase>
+        </Showcase>
 
-      <Showcase title="Scroll area">
-        <div className="h-48 w-64 border border-border bg-surface">
-          <ScrollArea className="h-full">
-            <ul className="flex flex-col pr-4.5 pl-2 text-sm">
-              {topics.map((topic) => (
-                <li key={topic} className="border-b border-border py-2 last:border-b-0">
-                  {topic}
-                </li>
-              ))}
-            </ul>
-          </ScrollArea>
-        </div>
-      </Showcase>
-
-      <Showcase title="Tabs">
-        <ModeTabs />
-      </Showcase>
-
-      <Showcase title="Dialog">
-        <Dialog>
-          <DialogTrigger render={<Button />}>Create topic</DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Create topic</DialogTitle>
-              <DialogDescription>Each topic becomes a persistent learning thread.</DialogDescription>
-            </DialogHeader>
-            <Field id="gallery-dialog-topic" label="Name">
-              <Input id="gallery-dialog-topic" placeholder="Computer networking" />
-            </Field>
-            <DialogFooter showCloseButton>
-              <Button>Create</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </Showcase>
-
-      <Showcase title="Dropdown menu">
-        <TopicMenu />
-      </Showcase>
-
-      <Showcase title="Tooltip">
-        <Tooltip>
-          <TooltipTrigger render={<Button />}>Top</TooltipTrigger>
-          <TooltipContent>Hints get progressively stronger</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger render={<Button />}>Bottom</TooltipTrigger>
-          <TooltipContent side="bottom">Predict before you run it</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger render={<Button size="icon" aria-label="Settings" />}>
+        <Showcase title="Button">
+          <Button>Continue</Button>
+          <Button size="icon" aria-label="New topic">
+            <PlusIcon />
+          </Button>
+          <Button size="icon" aria-label="Settings">
             <SettingsIcon />
-          </TooltipTrigger>
-          <TooltipContent side="right">Settings</TooltipContent>
-        </Tooltip>
-      </Showcase>
+          </Button>
+          <Button disabled>Disabled</Button>
+        </Showcase>
 
-      <Showcase title="Skeleton">
-        <div className="flex items-center gap-3">
-          <Skeleton className="size-10" />
-          <div className="flex flex-col gap-2">
-            <Skeleton className="h-4 w-56" />
-            <Skeleton className="h-4 w-40" />
+        <Showcase title="Badge">
+          <Badge>Teach mode</Badge>
+          <Badge variant="destructive">Overdue</Badge>
+        </Showcase>
+
+        <Showcase title="Input and label">
+          <Field className="w-64" id="gallery-input" label="Topic">
+            <Input id="gallery-input" placeholder="HTTP" />
+          </Field>
+          <Field className="w-64" id="gallery-input-invalid" label="Invalid">
+            <Input id="gallery-input-invalid" defaultValue="Not a topic" aria-invalid />
+          </Field>
+          <Field className="w-64" id="gallery-input-disabled" label="Disabled">
+            <Input id="gallery-input-disabled" placeholder="Unavailable" disabled />
+          </Field>
+        </Showcase>
+
+        <Showcase title="Textarea">
+          <Field className="w-64" id="gallery-textarea" label="Explanation">
+            <Textarea id="gallery-textarea" placeholder="Explain why the browser enforces CORS" />
+          </Field>
+          <Field className="w-64" id="gallery-textarea-invalid" label="Invalid">
+            <Textarea id="gallery-textarea-invalid" defaultValue="The server blocks the response." aria-invalid />
+          </Field>
+          <Field className="w-64" id="gallery-textarea-disabled" label="Disabled">
+            <Textarea id="gallery-textarea-disabled" placeholder="Unavailable" disabled />
+          </Field>
+        </Showcase>
+
+        <Showcase title="Select">
+          <ProviderSelect />
+          <ProviderSelect disabled />
+        </Showcase>
+
+        <Showcase title="Card">
+          <div className="w-80">
+            <Card>
+              <CardHeader>
+                <CardTitle>HTTP</CardTitle>
+                <CardDescription>Last studied two days ago</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Status codes, caching headers, and why the browser enforces CORS.
+                </p>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-      </Showcase>
+          <div className="w-64">
+            <Card size="sm">
+              <CardHeader>
+                <CardTitle>Small card</CardTitle>
+                <CardDescription>Compact spacing</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">For dense lists.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </Showcase>
 
-      <Showcase title="Alert">
-        <div className="flex w-full max-w-xl flex-col gap-3">
-          <Alert>
-            <AlertTitle>Review scheduled</AlertTitle>
-            <AlertDescription>CORS comes back tomorrow without hints.</AlertDescription>
-          </Alert>
-          <Alert variant="destructive">
-            <AlertTitle>Provider unreachable</AlertTitle>
-            <AlertDescription>Check the endpoint and try again.</AlertDescription>
-          </Alert>
-        </div>
-      </Showcase>
-    </main>
+        <Showcase title="Separator">
+          <div className="flex w-80 flex-col gap-3 text-sm">
+            <p>Explore</p>
+            <Separator />
+            <div className="flex h-5 items-center gap-3">
+              <span>Teach</span>
+              <Separator orientation="vertical" />
+              <span>Practice</span>
+              <Separator orientation="vertical" />
+              <span>Assess</span>
+            </div>
+          </div>
+        </Showcase>
+
+        <Showcase title="Scroll area">
+          <div className="h-48 w-64 border border-border bg-surface">
+            <ScrollArea className="h-full">
+              <ul className="flex flex-col pr-4.5 pl-2 text-sm">
+                {topics.map((topic) => (
+                  <li key={topic} className="border-b border-border py-2 last:border-b-0">
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+            </ScrollArea>
+          </div>
+        </Showcase>
+
+        <Showcase title="Tabs">
+          <ModeTabs />
+        </Showcase>
+
+        <Showcase title="Dialog">
+          <Dialog>
+            <DialogTrigger render={<Button />}>Create topic</DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Create topic</DialogTitle>
+                <DialogDescription>Each topic becomes a persistent learning thread.</DialogDescription>
+              </DialogHeader>
+              <Field id="gallery-dialog-topic" label="Name">
+                <Input id="gallery-dialog-topic" placeholder="Computer networking" />
+              </Field>
+              <DialogFooter showCloseButton>
+                <Button>Create</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </Showcase>
+
+        <Showcase title="Dropdown menu">
+          <TopicMenu />
+        </Showcase>
+
+        <Showcase title="Tooltip">
+          <Tooltip>
+            <TooltipTrigger render={<Button />}>Top</TooltipTrigger>
+            <TooltipContent>Hints get progressively stronger</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button />}>Bottom</TooltipTrigger>
+            <TooltipContent side="bottom">Predict before you run it</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button size="icon" aria-label="Settings" />}>
+              <SettingsIcon />
+            </TooltipTrigger>
+            <TooltipContent side="right">Settings</TooltipContent>
+          </Tooltip>
+        </Showcase>
+
+        <Showcase title="Skeleton">
+          <div className="flex items-center gap-3">
+            <Skeleton className="size-10" />
+            <div className="flex flex-col gap-2">
+              <Skeleton className="h-4 w-56" />
+              <Skeleton className="h-4 w-40" />
+            </div>
+          </div>
+        </Showcase>
+
+        <Showcase title="Alert">
+          <div className="flex w-full max-w-xl flex-col gap-3">
+            <Alert>
+              <AlertTitle>Review scheduled</AlertTitle>
+              <AlertDescription>CORS comes back tomorrow without hints.</AlertDescription>
+            </Alert>
+            <Alert variant="destructive">
+              <AlertTitle>Provider unreachable</AlertTitle>
+              <AlertDescription>Check the endpoint and try again.</AlertDescription>
+            </Alert>
+          </div>
+        </Showcase>
+      </main>
+    </>
   )
 }
 
